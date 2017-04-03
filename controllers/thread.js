@@ -1,7 +1,20 @@
 const Thread = require('../models/Thread');
 
 exports.getTopThreads = (req, res) => {
-  Thread.find((err, docs) => {
-    res.render('threads', { threads: docs });
+  // Thread.create(
+  //   {
+  //     title: "Test2",
+  //     description: "This is description",
+  //     upVotes: 0,
+  //     downVotes: 0
+  //   }, function () {
+  //     console.log("Thread created");
+  //   }
+  // );
+  Thread.aggregate([
+      {$sort: {upVotes : -1}},
+      {$limit: 10},
+    ],(err, docs) => {
+      res.render('threads', { threads: docs });
   });
 };
