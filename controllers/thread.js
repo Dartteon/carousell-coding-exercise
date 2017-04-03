@@ -35,3 +35,17 @@ exports.downvoteThread = (req, res) => {
     res.redirect('back');
   });
 }
+
+exports.createThread = (req, res) => {
+  threadTitle = req.query.title;
+  threadDescription = req.query.description;
+  Thread.create(
+    {
+      title: threadTitle,
+      description: threadDescription,
+      upVotes: 0
+    }, function() {
+      res.redirect('/');
+    }
+  )
+}
