@@ -1,4 +1,4 @@
-const Thread = require('../models/Thread.js');
+const Thread = require('../models/Thread');
 
 exports.getTopThreads = (req, res) => {
   Thread.find((err, docs) => {
