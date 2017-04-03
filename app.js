@@ -34,6 +34,7 @@ const homeController = require('./controllers/home');
 const userController = require('./controllers/user');
 const apiController = require('./controllers/api');
 const contactController = require('./controllers/contact');
+const threadController = require('./controllers/thread');
 
 /**
  * API keys and Passport configuration.
@@ -117,7 +118,7 @@ app.use(express.static(path.join(__dirname, 'public'), { maxAge: 31557600000 }))
 /**
  * Primary app routes.
  */
-app.get('/', homeController.index);
+app.get('/', threadController.getTopThreads);
 app.get('/login', userController.getLogin);
 app.post('/login', userController.postLogin);
 app.get('/logout', userController.logout);
@@ -215,6 +216,13 @@ app.get('/auth/pinterest', passport.authorize('pinterest', { scope: 'read_public
 app.get('/auth/pinterest/callback', passport.authorize('pinterest', { failureRedirect: '/login' }), (req, res) => {
   res.redirect('/api/pinterest');
 });
+
+/**
+ *  Implementation of routing for Thread pages
+ */
+ //app.get('/threads', threadController.getTopThreads);
+ app.get('/threads/upvote', threadController.upvoteThread);
+ app.get('/threads/downvote', threadController.downvoteThread);
 
 /**
  * Error Handler.
