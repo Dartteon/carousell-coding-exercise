@@ -1,6 +1,17 @@
 extends layout
 
 block content
+      
+    h2 Create Thread
+    form(action='threads/create',method='get')
+      div.form-group
+        label(for='pw2') Title:
+        input#pw2.form-control(type='title' name='title' placeholder='Title')
+      div.form-group
+        label(for='pw2') Description:
+        input#pw2.form-control(type='description' name='description' placeholder='Description')
+      button.btn.btn-primary(type='submit') Submit
+    
     for thread in threads
       +thread-card(thread)
 
