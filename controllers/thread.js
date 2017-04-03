@@ -21,7 +21,6 @@ exports.getTopThreads = (req, res) => {
 
 exports.upvoteThread = (req, res) => {
   threadId = req.query.threadId;
-  console.log("Upvoting thread of ID = " + threadId);
   Thread.findByIdAndUpdate(threadId,
     { $inc: { "upVotes" : 1 }
   }, function() {
@@ -30,9 +29,8 @@ exports.upvoteThread = (req, res) => {
 }
 exports.downvoteThread = (req, res) => {
   threadId = req.query.threadId;
-  console.log("Upvoting thread of ID = " + threadId);
   Thread.findByIdAndUpdate(threadId,
-    { $inc: { "downVotes" : 1 }
+    { $inc: { "upVotes" : -1 }
   }, function() {
     res.redirect('back');
   });
