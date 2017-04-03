@@ -40,3 +40,11 @@ exports.createThread = (req, res) => {
     }
   )
 }
+
+exports.deleteThread = (req, res) => {
+  threadId = req.query.threadId;
+  Thread.remove({ _id: threadId},
+  function() {
+    res.redirect('back');
+  });
+}
