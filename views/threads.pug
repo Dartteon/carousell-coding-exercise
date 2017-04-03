@@ -13,7 +13,7 @@ mixin thread-card(thread)
       -var upvoteLink = '/threads/upvote?threadId=' + thread._id
       a.btn.btn-default(href=upvoteLink, role='button', style={color: 'white', background: 'green'}) 
         i.fa.fa-arrow-circle-up
-      h3= thread.upVotes - thread.downVotes
+      h3= thread.upVotes
       -var downvoteLink = '/threads/downvote?threadId=' + thread._id
       a.btn.btn-default(href=downvoteLink, role='button', style={color: 'white', background: 'red'}) 
         i.fa.fa-arrow-circle-down
