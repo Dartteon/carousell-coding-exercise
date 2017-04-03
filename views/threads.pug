@@ -1,0 +1,22 @@
+extends layout
+
+block content
+    for thread in threads
+      +thread-card(thread)
+
+mixin thread-card(thread)
+  div.thread-card.
+  a(style='margin-right: 5px;', color= 'green')
+  hr
+  .col-sm-12
+    .col-sm-1
+      -var upvoteLink = '/threads/upvote?threadId=' + thread._id
+      a.btn.btn-default(href=upvoteLink, role='button', style={color: 'white', background: 'green'}) 
+        i.fa.fa-arrow-circle-up
+      h3= thread.upVotes - thread.downVotes
+      -var downvoteLink = '/threads/downvote?threadId=' + thread._id
+      a.btn.btn-default(href=downvoteLink, role='button', style={color: 'white', background: 'red'}) 
+        i.fa.fa-arrow-circle-down
+    .col-sm-1
+      h3.thread-title= thread.title
+      p= thread.description
