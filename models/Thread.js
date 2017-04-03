@@ -6,7 +6,6 @@ const threadSchema = new mongoose.Schema({
     title: { type:String },
     description: { type: String},
     upVotes: Number,
-    downVotes: Number
 }, { timestamps: true });
 
 const Thread = mongoose.model('Thread', threadSchema);
