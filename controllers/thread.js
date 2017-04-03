@@ -2,18 +2,8 @@ const Thread = require('../models/Thread');
 const MAX_TOP_THREADS = 20;
 
 exports.getTopThreads = (req, res) => {
-  // Thread.create(
-  //   {
-  //     title: "Test2",
-  //     description: "This is description",
-  //     upVotes: 0,
-  //     downVotes: 0
-  //   }, function () {
-  //     console.log("Thread created");
-  //   }
-  // );
   Thread.aggregate([
-      {$sort: {upVotes : -1, createdAt : -1}},
+      {$sort: {upVotes : -1, createdAt : -1}},  //Sort by voteCount, then time of creation
       {$limit: MAX_TOP_THREADS},
     ],(err, docs) => {
       res.render('threads', { threads: docs });
