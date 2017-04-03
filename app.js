@@ -224,6 +224,7 @@ app.get('/auth/pinterest/callback', passport.authorize('pinterest', { failureRed
  app.get('/threads/upvote', threadController.upvoteThread);
  app.get('/threads/downvote', threadController.downvoteThread);
  app.get('/threads/create', threadController.createThread);
+ app.get('/threads/delete', threadController.deleteThread);
 
 /**
  * Error Handler.

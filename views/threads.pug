@@ -1,16 +1,15 @@
 extends layout
 
 block content
-      
-    h2 Create Thread
-    form(action='threads/create',method='get')
-      div.form-group
-        label(for='pw2') Title:
-        input#pw2.form-control(type='title' name='title' placeholder='Title')
-      div.form-group
-        label(for='pw2') Description:
-        input#pw2.form-control(type='description' name='description' placeholder='Description')
-      button.btn.btn-primary(type='submit') Submit
+  h2 Create Thread
+  form(action='threads/create',method='get')
+    div.form-group
+      label(for='pw2') Title:
+      input#pw2.form-control(type='title' name='title' placeholder='Title')
+    div.form-group
+      label(for='pw2') Description:
+      input#pw2.form-control(type='description' name='description' placeholder='Description')
+    button.btn.btn-primary(type='submit') Submit
     
     for thread in threads
       +thread-card(thread)
@@ -22,12 +21,14 @@ mixin thread-card(thread)
   .col-sm-12
     .col-sm-1
       -var upvoteLink = '/threads/upvote?threadId=' + thread._id
-      a.btn.btn-default(href=upvoteLink, role='button', style={color: 'white', background: 'green'}) 
+      a.btn.btn-default(href=upvoteLink, role='button', style={color: 'white', background: '#3D9970'}) 
         i.fa.fa-arrow-circle-up
       h3= thread.upVotes
       -var downvoteLink = '/threads/downvote?threadId=' + thread._id
-      a.btn.btn-default(href=downvoteLink, role='button', style={color: 'white', background: 'red'}) 
+      a.btn.btn-default(href=downvoteLink, role='button', style={color: 'white', background: '#FF4136'}) 
         i.fa.fa-arrow-circle-down
-    .col-sm-1
-      h3.thread-title= thread.title
-      p= thread.description
+          
+    h3.thread-title= thread.title
+    p= thread.description
+    -var deleteLink = '/threads/delete?threadId=' + thread._id
+    a.btn.btn-default(href=deleteLink, role='button', style={color: 'white', background: '#FF4136'}) DELETE
